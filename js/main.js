@@ -1,37 +1,27 @@
 console.log('test');
-
-
-
+'use strict'
 
 $(document).ready(function () {
-
-
-    showTask();
-
-
     $(function () {
         $("#sortable").sortable();
         $("#sortable").disableSelection();
     });
-
-  
-
 });
 
-
 //JS
+var add_btn = document.getElementById('add_button');
+var tdMask = 'tdl_';
+var check = document.getElementsByClassName('lb_p-column');
+var delete_btn = document.getElementsByClassName('delete');
+var nId = 0;
+var mask = 'tdl_'
 
-
-
+showTask();
 
 //отметить готовoе
-var check = document.getElementsByClassName('lb_p-column');
-
-
 for (let i = 0; i < check.length; i++) {
     check[i].addEventListener('click', checkNoteActive);
 }
-
 
 function checkNoteActive() {
     this.style.background = '#c0c0c0';
@@ -47,22 +37,15 @@ function checkNoteDis() {
     this.addEventListener('click', checkNoteActive);
 }
 
-
-
-
 //удалить
-
-var delete_btn = document.getElementsByClassName('delete');
 if (delete_btn.length == 0) {
     document.getElementById('list_block').style.display = 'none';
     document.getElementById('hidden_txt').style.display = 'block';
 }
 
-
 for (let i = 0; i < delete_btn.length; i++) {
     delete_btn[i].addEventListener('click', deleteNote);
 }
-
 
 function deleteNote() { 
     // удаление с локалстореджа
@@ -84,15 +67,8 @@ function checkListCountToDelete(){
    }
 }
 
-
-
-
 // добавить 
-var add_btn = document.getElementById('add_button');
 add_btn.addEventListener('click', addToList);
-
-var tdMask = 'tdl_';
-
 window.onkeypress = pressed;
 function pressed(e) 
 {
@@ -100,8 +76,6 @@ function pressed(e)
 	if(key == 13)
         addToList();
 }
-
-
 function addToList() {
 
     let digit = document.getElementById('input_info').value;
@@ -116,19 +90,13 @@ function addToList() {
             document.getElementById('hidden_txt').style.display = 'none';
         }
         addToLocalStorage();
-        
-
-
         let parent = document.getElementById('sortable');
         let div = document.createElement('div');
         let btn = document.createElement('button');
         btn.classList.add('delete');
-
         let p = document.createElement('p');
         p.classList.add('txt');
         p.innerHTML = digit;
-
-
         div.classList.add('lb_p-column');
         div.appendChild(p);
         div.appendChild(btn);
@@ -143,8 +111,7 @@ function addToList() {
     }
 }
 
-var nId = 0;
-var mask = 'tdl_'
+
 
 
 function showTask(){
@@ -191,8 +158,6 @@ function checkListCountToMark(){
     }
 }
 
-
-
 // добавление в localStorage
 function addToLocalStorage(){
         var timeVal = document.getElementById('input_info').value;
@@ -204,16 +169,12 @@ function addToLocalStorage(){
                nId = jellid;
            }
         }
-        
-        
         nId++;
 
         localStorage.setItem(mask + nId, timeVal);
     }
 
-function removeFromLocalStorage(){
-    // текст елемента списка сравнить с LS.value и удалять
-}
+
 
 
 
