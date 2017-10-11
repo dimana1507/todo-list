@@ -1,12 +1,12 @@
 console.log('test');
 'use strict'
 
-$(document).ready(function () {
-    $(function () {
-        $("#sortable").sortable();
-        $("#sortable").disableSelection();
-    });
-});
+// $(document).ready(function () {
+//     $(function () {
+//         $("#sortable").sortable();
+//         $("#sortable").disableSelection();
+//     });
+// });
 
 //JS
 var add_btn = document.getElementById('add_button');
