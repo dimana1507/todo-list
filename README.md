@@ -1,2 +1,2 @@
-# todo-list
-todo list, native JavaScript
+# task-manager
+Task manager, native JavaScript and animations with jQuery. 
