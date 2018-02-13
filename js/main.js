@@ -25,9 +25,9 @@ for (var i = 0; i < check.length; i++) {
 function checkNoteActive(event) {
     this.classList.toggle('active');
     var key = this.getAttribute('data-itemid');
-    var time = JSON.parse(localStorage.getItem(key));
-    time.done = !time.done;
-    localStorage.setItem(key, JSON.stringify(time));
+    var ls_array = JSON.parse(localStorage.getItem(key));
+    ls_array.done = !ls_array.done;
+    localStorage.setItem(key, JSON.stringify(ls_array));
     event.stopPropagation();
 }
 
@@ -38,14 +38,18 @@ function downloadNewImg(event) {
     var input = event.target;
     var _id = this.parentElement.getAttribute('data-itemid');
     var reader = new FileReader();
+
+    var ls_array = JSON.parse(localStorage.getItem(_id));
     reader.onload = function () {
         var dataURL = reader.result;
-
         var output = document.getElementById(_id);
         output.src = dataURL;
+        ls_array.dataUrl = dataURL;
+        localStorage.setItem(_id, JSON.stringify(ls_array));
+
     };
     reader.readAsDataURL(input.files[0]);
-
+      
     this.parentElement.addEventListener('click', checkNoteActive);
 
 
@@ -183,7 +187,7 @@ function showTask() {
                 img.classList.add('personal__img');
                 img.setAttribute('id', key);
                 img.setAttribute('type', 'file');
-                img.setAttribute('src', ' ');
+                img.setAttribute('src', JSON.parse(localStorage.getItem(key)).dataUrl);
 
                 var new_img_btn = document.createElement('input');
                 new_img_btn.setAttribute('type', 'file');
@@ -244,7 +248,8 @@ function addToLocalStorage() {
     var timeArr = {
         'title': timeTitle,
         'description': timeDescription,
-        'done': false
+        'done': false,
+        'dataUrl' : ' '
     };
 
     var lsLen = localStorage;
