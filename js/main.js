@@ -21,7 +21,7 @@ function blockCheck() {
 for (var i = 0; i < check.length; i++) {
     check[i].addEventListener('click', checkNoteActive);
 }
-
+//отмечаем готова ли таска
 function checkNoteActive(event) {
     this.classList.toggle('active');
     var key = this.getAttribute('data-itemid');
@@ -54,7 +54,6 @@ function downloadNewImg(event) {
 
 
 }
-
 
 //удалить
 if (delete_btn.length == 0) {
@@ -100,6 +99,7 @@ function pressed(e) {
     if (key == 13)
         addToList();
 }
+// добавление тасков с инпута
 function addToList() {
 
     var digit = document.getElementById('task_title').value;
@@ -165,7 +165,7 @@ function addToList() {
 
 
 
-
+// выгрузка тасков с localstorage
 function showTask() {
     var lsLen = localStorage.length;
 
